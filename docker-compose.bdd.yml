@@ -1,0 +1,35 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile
+    container_name: decode-docker-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-app}
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - bdd
+
+  adminer:
+    build:
+      context: .
+      dockerfile: docker/adminer/Dockerfile
+    container_name: decode-docker-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - bdd
+
+volumes:
+  postgres_data:
+
+networks:
+  bdd:
+    name: bdd

@@ -1,0 +1,18 @@
+services:
+  symfony:
+    build:
+      context: .
+      dockerfile: docker/symfony/Dockerfile
+    container_name: decode-docker-symfony
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-app}@postgres:5432/${POSTGRES_DB:-app}?serverVersion=16
+    volumes:
+      - ./symfony-app:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - bdd
+
+networks:
+  bdd:
+    external: true
