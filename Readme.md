@@ -29,3 +29,9 @@ docker compose -f docker-compose.app.yml run --rm symfony php bin/console doctri
 docker compose -f docker-compose.bdd.yml down
 docker compose -f docker-compose.app.yml down
 ```
+
+## Use composer
+
+```bash
+docker run --rm -v ./symfony-app:/app -w /app decode-docker-composer [command] [args]
+```
