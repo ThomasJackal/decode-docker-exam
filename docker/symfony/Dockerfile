@@ -1,13 +1,20 @@
-FROM php:8.2-alpine
+FROM alpine:3.19
 
 RUN apk add --no-cache \
-    postgresql-dev \
-    libxml2-dev \
-    libzip-dev \
-    icu-dev \
-    oniguruma-dev \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install -j$(nproc) pdo_pgsql pgsql mbstring xml zip intl opcache
+    php82 \
+    php82-ctype \
+    php82-pdo_pgsql \
+    php82-pgsql \
+    php82-mbstring \
+    php82-xml \
+    php82-dom \
+    php82-zip \
+    php82-intl \
+    php82-opcache \
+    php82-session \
+    php82-tokenizer \
+    postgresql-libs \
+    && ln -sf /usr/bin/php82 /usr/bin/php
 
 WORKDIR /app
 
