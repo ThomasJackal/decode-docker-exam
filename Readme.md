@@ -22,6 +22,7 @@ docker compose -f docker-compose.app.yml run --rm symfony php bin/console doctri
 ## Endpoint
 
 - **API** : http://localhost:8000/api/todos
+- **Adminer** : http://localhost:8080/adminer.php
 
 ## Stop containers
 
